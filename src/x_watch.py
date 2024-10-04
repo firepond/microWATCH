@@ -186,6 +186,7 @@ def main():
 
     watch = WATCH()
     locations = watch.detect(dummy_data)
+    print(locations)
 
     dataset_name = "apple"
     dataset_prefix = "./datasets/"
