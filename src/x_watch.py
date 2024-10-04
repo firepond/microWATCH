@@ -3,6 +3,14 @@ import numpy as np
 import ot
 
 from load_dataset import TimeSeries
+import argparse
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Wrapperfor None-detector")
+    parser.add_argument("-i", "--input", help="input datasets name", required=True)
+    parser.add_argument("-o", "--output", help="path to the output file")
+    return parser.parse_args()
 
 
 def find_unique_sub_arrays(arr):
@@ -188,7 +196,9 @@ def main():
     locations = watch.detect(dummy_data)
     print(locations)
 
-    dataset_name = "apple"
+    args = parse_args()
+
+    dataset_name = args.input
     dataset_prefix = "./datasets/"
     dataset_loc = dataset_prefix + "/" + dataset_name + ".json"
     print(dataset_loc)

@@ -1,6 +1,5 @@
 .vscode
 
-*.py
 # Byte-compiled / optimized / DLL files
 src/__pycache__
 *.pyc
