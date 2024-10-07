@@ -1,4 +1,5 @@
 .vscode
+profile.txt
 
 # Byte-compiled / optimized / DLL files
 src/__pycache__
