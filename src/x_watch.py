@@ -91,8 +91,13 @@ def wassertein(sample, dist):
             - unique_sub_arrays (numpy.ndarray): Array of unique sub-arrays.
             - counts (numpy.ndarray): Array of counts corresponding to unique sub-arrays.
     """
-    sample_list, sample_freq = find_unique_sub_arrays(sample)
-    dist_list, dist_freq = find_unique_sub_arrays(dist)
+    # sample_list, sample_freq = find_unique_sub_arrays(sample)
+    # dist_list, dist_freq = find_unique_sub_arrays(dist)
+    sample_list = sample
+    sample_freq = np.ones(sample.shape[0])
+
+    dist_list = dist
+    dist_freq = np.ones(dist.shape[0])
 
     sample_dist = sample_freq / sample.shape[0]
     dist_dist = dist_freq / dist.shape[0]
@@ -163,8 +168,7 @@ class WATCH:
 
         return self.locations
 
-
-def main():
+def dummy_test():
     dummy_data = np.array(
         [
             [1, 2],
@@ -195,20 +199,24 @@ def main():
     watch = WATCH()
     locations = watch.detect(dummy_data)
     print(locations)
+    
+    
+def main():
+
 
     args = parse_args()
 
     dataset_name = args.input
     dataset_prefix = "./datasets/"
-    dataset_loc = dataset_prefix + "/" + dataset_name + ".json"
+    dataset_loc = dataset_prefix + "/" + dataset_name 
+    dataset_loc = dataset_name
     print(dataset_loc)
     ts = TimeSeries.from_json(dataset_loc)
 
     data = ts.df.to_numpy()
-    data = data[::, 1:3]
+    data = data[::, 1::]
 
     print(data.shape)
-    print(data[0:20])
 
     watch = WATCH()
     locations = watch.detect(data)
