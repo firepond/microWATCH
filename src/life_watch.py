@@ -147,7 +147,7 @@ class LIFE_WATCH:
                         # add current point to that distribution
                         # set it to be the current active distribution
                         self.recurring_locations.append(batch_id * self.batch_size)
-                        self.cur_dist_id = distances[0][0]
+                        self.cur_dist_id = int(distances[0][0])
                         self.add_batch_to_recurring_dist(batch, self.cur_dist_id)
                     else:
                         # new task
@@ -163,17 +163,15 @@ class LIFE_WATCH:
 
 def main():
 
-    # args = parse_args()
+    args = parse_args()
 
-    # dataset_name = args.input
-    dataset_name = "./datasets/apple.json"
+    dataset_name = args.input
+    # dataset_name = "./datasets/apple.json"
     ts = TimeSeries.from_json(dataset_name)
 
     data = ts.df.to_numpy()
-    data = data[::, 1:3]
-
+    data = data[::, 1:]
     print(data.shape)
-    print(data[0:20])
 
     watch = LIFE_WATCH()
     new_locations, recurring_locations = watch.detect(data)
