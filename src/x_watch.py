@@ -168,6 +168,7 @@ class WATCH:
 
         return self.locations
 
+
 def dummy_test():
     dummy_data = np.array(
         [
@@ -199,16 +200,15 @@ def dummy_test():
     watch = WATCH()
     locations = watch.detect(dummy_data)
     print(locations)
-    
-    
-def main():
 
+
+def main():
 
     args = parse_args()
 
     dataset_name = args.input
     dataset_prefix = "./datasets/"
-    dataset_loc = dataset_prefix + "/" + dataset_name 
+    dataset_loc = dataset_prefix + "/" + dataset_name
     dataset_loc = dataset_name
     print(dataset_loc)
     ts = TimeSeries.from_json(dataset_loc)
