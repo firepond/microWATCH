@@ -4,6 +4,7 @@
 DIRECTORY="./datasets"  # Change this to your target directory
 PYTHON_PROGRAM="./src/life_watch.py"      # Change this to your Python script name
 
+BASH_START_TIME=$(date +%s)
 # Iterate over all files in the specified directory
 for FILE in "$DIRECTORY"/*; do
     # Check if it's a file
@@ -26,3 +27,9 @@ for FILE in "$DIRECTORY"/*; do
         echo "$FILE is not a valid file, skipping."
     fi
 done
+
+BASH_END_TIME=$(date +%s)
+
+DURATION=$((BASH_END_TIME - BASH_START_TIME))
+        
+echo "Time taken to process all tasks: $DURATION seconds"
