@@ -77,7 +77,11 @@ def iterate_batches(points: np.ndarray, batch_size: int):
 
 class LIFE_WATCH:
     def __init__(
-        self, threshold=2, new_dist_buffer_size=16, batch_size=3, max_dist_size=100
+        self, 
+        threshold=2, 
+        new_dist_buffer_size=16, 
+        batch_size=3, 
+        max_dist_size=100
     ):
         self.threshold_ratio = threshold
         self.max_dist_size = max_dist_size
