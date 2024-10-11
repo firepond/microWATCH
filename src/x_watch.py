@@ -119,10 +119,10 @@ def iterate_batches(points, batch_size):
 class WATCH:
     def __init__(
         self,
-        threshold=3,
-        new_dist_buffer_size=3,
+        threshold=2,
+        new_dist_buffer_size=16,
         batch_size=3,
-        max_dist_size=0,
+        max_dist_size=100,
         DEBUG=False,
     ):
         self.threshold_ratio = threshold
