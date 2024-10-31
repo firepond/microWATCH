@@ -1,7 +1,6 @@
 import numpy as np
 import ot
 
-from load_dataset import TimeSeries
 import argparse
 
 
@@ -77,11 +76,7 @@ def iterate_batches(points: np.ndarray, batch_size: int):
 
 class LIFE_WATCH:
     def __init__(
-        self, 
-        threshold=2, 
-        new_dist_buffer_size=16, 
-        batch_size=3, 
-        max_dist_size=100
+        self, threshold=2, new_dist_buffer_size=16, batch_size=3, max_dist_size=100
     ):
         self.threshold_ratio = threshold
         self.max_dist_size = max_dist_size
@@ -171,10 +166,7 @@ def main():
 
     dataset_name = args.input
     # dataset_name = "./datasets/apple.json"
-    ts = TimeSeries.from_json(dataset_name)
-
-    data = ts.df.to_numpy()
-    data = data[::, 1:]
+    data = np.loadtxt(dataset_name, delimiter=",")
     print(data.shape)
 
     watch = LIFE_WATCH()
