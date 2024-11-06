@@ -172,3 +172,5 @@ annotations.json
 csv/
 # ignore results
 results.csv
+results
+params
