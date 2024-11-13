@@ -174,3 +174,5 @@ csv/
 results.csv
 results
 params
+
+sdkconfig

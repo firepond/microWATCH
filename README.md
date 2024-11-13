@@ -1,2 +1,2 @@
-# pi_watch
-WATCH change point detection algorithm on raspberry pi
+# microWATCH
+WATCH change point detection algorithm for micro-controller, raspberry pi and other IoT devvices
