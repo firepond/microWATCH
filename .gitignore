@@ -167,12 +167,13 @@ cython_debug/
 
 
 # ignore some data files
-annotations.json
+# annotations.json
 # ignore csv folder
-csv/
 # ignore results
 results.csv
 results
 params
 
 sdkconfig
+
+/datasets

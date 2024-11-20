@@ -1,10 +1,36 @@
 """Distance measures to compare two probability density functions."""
 
-import numpy as np
+try:
+    from ulab import numpy as np
+except:
+    import numpy as np
 
-__version__ = "0.9.1"
 
-EPSILON = np.finfo(float).eps
+# EPSILON = np.finfo(float).eps
+EPSILON = (
+    7.0 / 3 - 4.0 / 3 - 1
+)  # no definition for np.finfo(float).eps in ulab, manually calculated
+
+
+def isnan(num):
+    return (num - num) != 0
+
+
+def nansum(array):
+    # no implementation for np.nansum in ulab
+    # manually implement this
+    return np.sum(np.where(isnan(array), 0, array))
+
+
+def abs(array):
+    # abs does not work in ulab, manually implement this
+    return np.where(array < 0, -array, array)
+
+
+def power(array, power):
+    # no implementation for np.power in ulab
+    # manually implement this
+    return array**power
 
 
 def acc(u, v):
@@ -35,8 +61,8 @@ def add_chisq(u, v):
            vol. 1(4), pp. 300-307.
     """
     uvmult = u * v
-    with np.errstate(divide="ignore", invalid="ignore"):
-        return np.sum(np.where(uvmult != 0, ((u - v) ** 2 * (u + v)) / uvmult, 0))
+    # with np.errstate(divide="ignore", invalid="ignore"):
+    return np.sum(np.where(uvmult != 0, ((u - v) ** 2 * (u + v)) / uvmult, 0))
 
 
 def bhattacharyya(u, v):
@@ -77,7 +103,7 @@ def braycurtis(u, v):
            1(4), 300-307.
         3. https://en.wikipedia.org/wiki/Bray–Curtis_dissimilarity
     """
-    return np.sum(np.abs(u - v)) / np.sum(np.abs(u + v))
+    return np.sum(abs(u - v)) / np.sum(abs(u + v))
 
 
 def canberra(u, v):
@@ -93,8 +119,9 @@ def canberra(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307.
     """
-    with np.errstate(invalid="ignore"):
-        return np.nansum(np.abs(u - v) / (np.abs(u) + np.abs(v)))
+    # with np.errstate(divide="ignore", invalid="ignore"):
+    # return np.nansum(abs(u - v) / (abs(u) + abs(v)))
+    return nansum(abs(u - v) / (abs(u) + abs(v)))
 
 
 def chebyshev(u, v):
@@ -112,12 +139,12 @@ def chebyshev(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307.
     """
-    return np.amax(np.abs(u - v))
+    return np.max(abs(u - v))
 
 
 def chebyshev_min(u, v):
     """Minimum value distance (my measure)."""
-    return np.amin(np.abs(u - v))
+    return np.min(abs(u - v))
 
 
 def clark(u, v):
@@ -135,8 +162,8 @@ def clark(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307.
     """
-    with np.errstate(divide="ignore", invalid="ignore"):
-        return np.sqrt(np.nansum(np.power(np.abs(u - v) / (u + v), 2)))
+    # with np.errstate(divide="ignore", invalid="ignore"):
+    return np.sqrt(nansum(power(abs(u - v) / (u + v), 2)))
 
 
 def cosine(u, v):
@@ -166,7 +193,7 @@ def czekanowski(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307.
     """
-    return np.sum(np.abs(u - v)) / np.sum(u + v)
+    return np.sum(abs(u - v)) / np.sum(u + v)
 
 
 def dice(u, v):
@@ -198,8 +225,8 @@ def divergence(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307.
     """
-    with np.errstate(invalid="ignore"):
-        return 2 * np.nansum(np.power(u - v, 2) / np.power(u + v, 2))
+    # with np.errstate(invalid="ignore"):
+    return 2 * nansum(power(u - v, 2) / power(u + v, 2))
 
 
 def euclidean(u, v):
@@ -251,7 +278,7 @@ def gower(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307.
     """
-    return np.sum(np.abs(u - v)) / u.size
+    return np.sum(abs(u - v)) / u.size
 
 
 def hellinger(u, v):
@@ -403,7 +430,7 @@ def kulczynski(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4):300-307.
     """
-    return np.sum(np.abs(u - v)) / np.sum(np.minimum(u, v))
+    return np.sum(abs(u - v)) / np.sum(np.minimum(u, v))
 
 
 def kumarjohnson(u, v):
@@ -420,8 +447,8 @@ def kumarjohnson(u, v):
     """
     uvmult = u * v
     with np.errstate(divide="ignore", invalid="ignore"):
-        numer = np.power(u**2 - v**2, 2)
-        denom = 2 * np.power(uvmult, 3 / 2)
+        numer = power(u**2 - v**2, 2)
+        denom = 2 * power(uvmult, 3 / 2)
         return np.sum(np.where(uvmult != 0, numer / denom, 0))
 
 
@@ -438,7 +465,7 @@ def lorentzian(u, v):
         One (1) is added to guarantee the non-negativity property and to
         eschew the log of zero
     """
-    return np.sum(np.log(np.abs(u - v) + 1))
+    return np.sum(np.log(abs(u - v) + 1))
 
 
 def manhattan(u, v):
@@ -463,7 +490,7 @@ def manhattan(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4):300-307.
     """
-    return np.sum(np.abs(u - v))
+    return np.sum(abs(u - v))
 
 
 def marylandbridge(u, v):
@@ -520,7 +547,10 @@ def minkowski(u, v, p=2):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4):300-307.
     """
-    return np.linalg.norm(u - v, ord=p)
+
+    # return np.linalg.norm(u - v, ord=p)
+    return np.linalg.norm(u - v)
+    # return norm2(u - v)
 
 
 def motyka(u, v):
@@ -550,8 +580,8 @@ def neyman_chisq(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307.
     """
-    with np.errstate(divide="ignore", invalid="ignore"):
-        return np.sum(np.where(u != 0, (u - v) ** 2 / u, 0))
+    # with np.errstate(divide="ignore", invalid="ignore"):
+    return np.sum(np.where(u != 0, (u - v) ** 2 / u, 0))
 
 
 def nonintersection(u, v):
@@ -590,8 +620,8 @@ def pearson_chisq(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307.
     """
-    with np.errstate(divide="ignore", invalid="ignore"):
-        return np.sum(np.where(v != 0, (u - v) ** 2 / v, 0))
+    # with np.errstate(divide="ignore", invalid="ignore"):
+    return np.sum(np.where(v != 0, (u - v) ** 2 / v, 0))
 
 
 def penroseshape(u, v):
@@ -618,7 +648,7 @@ def soergel(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307.
     """
-    return np.sum(np.abs(u - v)) / np.sum(np.maximum(u, v))
+    return np.sum(abs(u - v)) / np.sum(np.maximum(u, v))
 
 
 def squared_chisq(u, v):
@@ -634,8 +664,8 @@ def squared_chisq(u, v):
            1(4), 300-307.
     """
     uvsum = u + v
-    with np.errstate(divide="ignore", invalid="ignore"):
-        return np.sum(np.where(uvsum != 0, (u - v) ** 2 / uvsum, 0))
+    # with np.errstate(divide="ignore", invalid="ignore"):
+    return np.sum(np.where(uvsum != 0, (u - v) ** 2 / uvsum, 0))
 
 
 def squaredchord(u, v):
@@ -742,10 +772,10 @@ def vicis_symmetric_chisq(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307
     """
-    with np.errstate(divide="ignore", invalid="ignore"):
-        u_v = (u - v) ** 2
-        uvmin = np.minimum(u, v) ** 2
-        return np.sum(np.where(uvmin != 0, u_v / uvmin, 0))
+    # with np.errstate(divide="ignore", invalid="ignore"):
+    u_v = (u - v) ** 2
+    uvmin = np.minimum(u, v) ** 2
+    return np.sum(np.where(uvmin != 0, u_v / uvmin, 0))
 
 
 def vicis_wave_hedges(u, v):
@@ -757,10 +787,10 @@ def vicis_wave_hedges(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307
     """
-    with np.errstate(divide="ignore", invalid="ignore"):
-        u_v = abs(u - v)
-        uvmin = np.minimum(u, v)
-        return np.sum(np.where(uvmin != 0, u_v / uvmin, 0))
+    # with np.errstate(divide="ignore", invalid="ignore"):
+    u_v = abs(u - v)
+    uvmin = np.minimum(u, v)
+    return np.sum(np.where(uvmin != 0, u_v / uvmin, 0))
 
 
 def wave_hedges(u, v):
@@ -772,7 +802,7 @@ def wave_hedges(u, v):
            Journal of Mathematical Models and Methods in Applied Sciences.
            1(4), 300-307
     """
-    with np.errstate(divide="ignore", invalid="ignore"):
-        u_v = abs(u - v)
-        uvmax = np.maximum(u, v)
-        return np.sum(np.where(((u_v != 0) & (uvmax != 0)), u_v / uvmax, 0))
+    # with np.errstate(divide="ignore", invalid="ignore"):
+    u_v = abs(u - v)
+    uvmax = np.maximum(u, v)
+    return np.sum(np.where(((u_v != 0) & (uvmax != 0)), u_v / uvmax, 0))

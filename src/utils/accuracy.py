@@ -1,6 +1,6 @@
 import json
-from metrics import covering
-from metrics import f_measure
+from utils.metrics import covering
+from utils.metrics import f_measure
 
 
 def load_annotations(filename, dataset):

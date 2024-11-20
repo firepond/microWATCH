@@ -3,8 +3,9 @@ import os
 import numpy as np
 import ot
 
-import accuracy
+import utils.accuracy as accuracy
 
+# original WATCH use wassertein distance, does not work for microcontroller
 
 def wassertein(sample, dist, metric="euclidean", post_process="null"):
     """
