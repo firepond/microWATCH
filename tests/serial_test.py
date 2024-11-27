@@ -40,7 +40,7 @@ def test_model(ser, data_queue):
     # send "A\r" unitl get a ">" response of ready to receive command, timeout =10s
     start_time = time.time()
     while True:
-        sleep(0.01)
+        sleep(0.1)
         line = get_line(ser)
         if ">" in line:
             # device is ready
