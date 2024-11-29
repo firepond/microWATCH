@@ -1,13 +1,16 @@
 import copy
 import json
+import os
 import numpy as np
 from BVARNIG import BVARNIG
 from CpModel import CpModel
+import accuracy
 from detector import Detector
 
-intensity = 50
-prior_a = 1.0
-prior_b = 1.0
+bocpd_intensities = [10, 50, 100, 200]
+bocpd_prior_a = [0.01, 0.1, 1.0, 10, 100]
+bocpd_prior_b = [0.01, 0.1, 1.0, 10, 100]
+
 
 threshold = 100
 
@@ -83,8 +86,7 @@ def run_bocpdms(mat, params):
     return detector
 
 
-def main():
-    file_name = "./bank.json"
+def detect(file_name, intensity, prior_a, prior_b):
     data, mat = load_dataset(file_name)
     # print(mat)
 
@@ -130,7 +132,43 @@ def main():
 
     # convert to Python ints
     locations = [int(loc) for loc in locations]
-    print(locations)
+    return locations, mat.shape[0]
+
+
+def main():
+    # Directory containing the files
+    directory = "../datasets/json"
+
+    # List all files in the directory
+    files = [
+        os.path.join(directory, f)
+        for f in os.listdir(directory)
+        if os.path.isfile(os.path.join(directory, f))
+    ]
+    for file in files:
+        # try all combinations of parameters, save the best one
+        best_params = {}
+        best_score = -1
+        for intensity in bocpd_intensities:
+            for prior_a in bocpd_prior_a:
+                for prior_b in bocpd_prior_b:
+                    try:
+                        locations, length = detect(file, intensity, prior_a, prior_b)
+                        dataset_name = file.split("/")[-1].split(".")[0]
+                        f1, cover = accuracy.scores(locations, dataset_name, length)
+                        score = f1 + cover
+                        if score > best_score:
+                            best_score = score
+                            best_params = {
+                                "intensity": intensity,
+                                "prior_a": prior_a,
+                                "prior_b": prior_b,
+                            }
+                    except Exception as e:
+                        print(e)
+        # write best parameters to file
+        with open("best_params_bocpdms.txt", "a") as f:
+            f.write(f"{file}: {best_params}\n")
 
 
 if __name__ == "__main__":
