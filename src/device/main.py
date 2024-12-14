@@ -39,92 +39,135 @@ def get_data(file_path):
     return data
 
 
-model_name = ""
-model_set = False
+def main():
+    model_name = ""
+    model_set = False
 
-dataset_path = ""
-data = []
-params = []
-model_set = False
-data_set = False
+    dataset_path = ""
+    data = []
+    params = []
+    model_set = False
+    data_set = False
 
-start = False
+    start = False
 
+    while True:
+        print(">")
+        # constantly check for incoming message
+        command = input()
+        if command == "":
+            continue
+        if command == "H":
+            print("hello\nboard: ESP32C6 (RISC-V)\nlanguage: micropython")
+        elif command == "C":
+            print("H\nA\nM\nD\nS")
+        elif command[0] == "M":
 
-while True:
-    print(">")
-    # constantly check for incoming message
-    command = input()
-    if command == "":
-        continue
-    if command == "H":
-        print("hello\nboard: ESP32C6 (RISC-V)\nlanguage: micropython")
-    elif command == "C":
-        print("H\nA\nM\nD\nS")
-    elif command[0] == "M":
+            if len(command) > 2 and command[1] == "+":
+                model_name = command[2:].split("\n")[0]
+                # if model_name has WATCH and a int, then it is WATCH model
 
-        if len(command) > 2 and command[1] == "+":
-            model_name = command[2:]
-            # if model_name has WATCH and a int, then it is WATCH model
+                if "WATCH" in model_name:
+                    # parse the int from the model name
+                    try:
+                        distance_index = int(model_name.split("WATCH")[-1])
+                    except:
+                        print("E")
+                        continue
 
-            if "WATCH" in model_name:
-                # parse the int from the model name
+                    import micro_watch as microwatch
+
+                    detector = microwatch.microWATCH()
+                    detector.metric = microwatch.distance_measures[distance_index]
+                    model_set = True
+                    print("M:" + model_name)
+                    model_name = "WATCH"
+                elif model_name == "CUSUM":
+                    from cusum import CusumMeanDetector
+
+                    detector = CusumMeanDetector()
+                    model_set = True
+                    model_name = "CUSUM"
+                    print("M:" + model_name)
+                elif model_name == "BOCPD":
+                    from micro_bocpd import BOCPD
+
+                    detector = BOCPD()
+
+                    model_set = True
+                    model_name = "BOCPD"
+                    print("M:" + model_name)
+            else:
+                print(f"model:{model_name}")
+        elif command[0] == "D":
+            if model_set == False:
+                print("E")
+                continue
+            if len(command) > 2 and command[1] == "+":
+                dataset_path = command[2:]
+                # load data
                 try:
-                    distance_index = int(model_name.split("WATCH")[-1])
+                    data = get_data(dataset_path)
                 except:
+                    print("load data error")
                     print("E")
                     continue
+                # load params
+                try:
+                    # params = get_params(dataset_path, distance_index)
+                    if "WATCH" in model_name:
+                        detector.set_params(distance_index, dataset_path)
+                    elif model_name == "CUSUM":
+                        detector.set_params(dataset_path)
+                    elif model_name == "BOCPD":
+                        pass
+                except:
+                    print("load params error")
+                    print("E")
+                    continue
+                data_set = True
+                print("D:" + dataset_path)
+            elif data_set == True:
+                print("D:" + dataset_path)
+            else:
+                print("No data")
+        elif command == "S":
+            if model_set == False or data_set == False:
+                print("E")
+            elif (
+                model_name == "WATCH" or model_name == "CUSUM" or model_name == "BOCPD"
+            ):
+                print("S")
+                # 10 time average
+                start_time = time.ticks_ms()
+                # run at least 10 times and 10 seconds (achieve both)
+                i = 0
+                time_diff = 0
+                while True:
 
-                import micro_watch as microwatch
+                    # for i in range(10):
+                    detector.detect(data)
+                    detector.reinit()
+                    end_time = time.ticks_ms()
+                    time_diff = time.ticks_diff(end_time, start_time)
+                    i += 1
+                    if i >= 10 and time_diff > 10000:
+                        break
 
-                watch = microwatch.microWATCH()
-                watch.metric = microwatch.distance_measures[distance_index]
-                model_set = True
-                print("M:" + model_name)
-                model_name = "WATCH"
-        else:
-            print("model")
-    elif command[0] == "D":
-        if model_set == False:
+                print("F:" + str(i))
+                print(f"Time: {time_diff/i} ms")
+            else:
+                print("E")
+        elif command != "A":
             print("E")
+
+
+if __name__ == "__main__":
+    while True:
+        try:
+            main()
+        # go back yo main loop if there is an error
+        except Exception as e:
+            print(e)
+
             continue
-        if len(command) > 2 and command[1] == "+":
-            dataset_path = command[2:]
-            # load data
-            try:
-                data = get_data(dataset_path)
-            except:
-                print("load data error")
-                print("E")
-                continue
-            # load params
-            try:
-                # params = get_params(dataset_path, distance_index)
-                watch.set_params(distance_index, dataset_path)
-            except:
-                print("load params error")
-                print("E")
-                continue
-            data_set = True
-            print("D:" + dataset_path)
-        elif data_set == True:
-            print("D:" + dataset_path)
-        else:
-            print("No data")
-    elif command == "S":
-        if model_set == False or data_set == False:
-            print("E")
-        elif model_name == "WATCH":
-            print("S")
-            # 10 time average
-            start_time = time.ticks_ms()
-            for i in range(10):
-                watch.detect(data)
-                watch.reinit()
-            end_time = time.ticks_ms()
-            print("F")
-            print(f"Time: {(end_time-start_time)/10} ms")
-        else:
-            print("E")
-    elif command != "A":
-        print("E")

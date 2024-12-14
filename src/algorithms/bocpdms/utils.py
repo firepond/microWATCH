@@ -33,17 +33,15 @@ def logsumexp(a, axis=None, b=None, keepdims=False, return_sign=False):
     else:
         tmp = np.exp(a - a_max)
 
-    # suppress warnings about log of zero
-    with np.errstate(divide="ignore"):
-        s = np.sum(tmp, axis=axis, keepdims=keepdims)
-        if return_sign:
-            # For complex, use the numpy>=2.0 convention for sign.
-            if np.issubdtype(s.dtype, np.complexfloating):
-                sgn = s / np.where(s == 0, 1, abs(s))
-            else:
-                sgn = np.sign(s)
-            s = abs(s)
-        out = np.log(s)
+    s = np.sum(tmp, axis=axis, keepdims=keepdims)
+    if return_sign:
+        # For complex, use the numpy>=2.0 convention for sign.
+        if np.issubdtype(s.dtype, np.complexfloating):
+            sgn = s / np.where(s == 0, 1, abs(s))
+        else:
+            sgn = np.sign(s)
+        s = abs(s)
+    out = np.log(s)
 
     if not keepdims:
         a_max = np.squeeze(a_max, axis=axis)

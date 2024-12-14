@@ -1,6 +1,8 @@
 from collections import deque
+import os
 import threading
 import time
+import numpy as np
 import serial
 from time import sleep
 import usb_logger
@@ -36,11 +38,13 @@ def get_lines(ser):
     return lines
 
 
-def test_model(ser, data_queue):
+def test_model(ser, data_queue, model_name="WATCH0", data_name="apple.csv"):
     # send "A\r" unitl get a ">" response of ready to receive command, timeout =10s
     start_time = time.time()
+    ser.write(b"A\r")
+
     while True:
-        sleep(0.1)
+        sleep(0.5)
         line = get_line(ser)
         if ">" in line:
             # device is ready
@@ -55,14 +59,15 @@ def test_model(ser, data_queue):
     lines = get_lines(ser)
 
     # send M+ModelName
-    ser.write(b"M+WATCH0\r")
-    sleep(0.5)
+    message = "M+" + model_name + "\r"
+    ser.write(bytes(message, "utf-8"))
+    sleep(3)
 
     # read all the available data, check if the model name is set
     lines = get_lines(ser)
     model_set = False
     for line in lines:
-        if "M:WATCH" in line:
+        if "M:" in line:
             print("Model name set")
             model_set = True
             break
@@ -72,8 +77,9 @@ def test_model(ser, data_queue):
         exit()
 
     # send D+DataName\n
-    ser.write(b"D+apple.csv\r")
-    time.sleep(1)
+    message = "D+csv/" + data_name + "\r"
+    ser.write(bytes(message, "utf-8"))
+    time.sleep(6)
     # wait for response: D:DataName and ">" for ready to receive command
     lines = get_lines(ser)
     data_set = False
@@ -105,13 +111,21 @@ def test_model(ser, data_queue):
             ser.close()
             exit()
 
+    run_count = 10
     # read unitl get a "F" for model done or 'E' for error
     while True:
         response = get_line(ser)
+        if "mem" in response:
+            # got memory error, print the error and raise an exception
+            print("Error: Memory error")
+            raise Exception("Memory error")
+
         if "F" in response:
             end_time = time.time()
             power_data = get_latest_data(data_queue)
             end_data = power_data[-1]
+            if response[1] == ":":
+                run_count = int(response.split("F:")[-1])
             break
         if "E" in response:
             print("Error: Model failed")
@@ -120,14 +134,18 @@ def test_model(ser, data_queue):
     # read the time used from the serial
     response = get_line(ser)
     print(response)
-    print(f"Time used: {end_time - start_time} s")
+    # get device time used
+    device_time = response.split("Time:")[-1].split("ms")[0]
+    # print(f"Time used: {end_time - start_time} s")
+    time_in_ms = (end_time - start_time) * 1000 / run_count  # 10 times average
     start_stamp = start_data[0]
     end_stamp = end_data[0]
     filtered_data = [
         data for data in power_data if data[0] >= start_stamp and data[0] <= end_stamp
     ]
-    energy_consumed = (filtered_data[-1][3] - filtered_data[0][3]) / 10
-    print(f"Energy consumed: {energy_consumed} J")
+    energy_consumed = (filtered_data[-1][3] - filtered_data[0][3]) / run_count
+    # print(f"Energy consumed: {energy_consumed} J")
+    return energy_consumed, device_time
 
 
 def main():
@@ -147,7 +165,47 @@ def main():
     ser.port = "/dev/ttyUSB0"
     ser.open()
     print("Testing on " + ser.name)
-    test_model(ser, data_queue)
+    # for all files in "datasets/csv" folder and for all WATCH versons in [0-38]
+    # test the model and save the result to a file
+    results_file = open("esp_bocpd.csv", "w")
+    # results_file = open("esp_cusum_results.csv", "w")
+    results_file.write("file_name, index, energy_consumed(J), time_used(ms)\n")
+
+    # for index in range(39):
+    for file_name in os.listdir("datasets/csv"):
+        # skip multivariate datasets
+        data = np.loadtxt("datasets/csv/" + file_name, delimiter=",")
+        if len(data.shape) > 1:
+            print(f"Skipping {file_name}")
+            continue
+        try:
+            energy, time_ms = test_model(ser, data_queue, "BOCPD", file_name)
+        except:
+            print(f"Error: {file_name}")
+            continue
+        print(f"Energy consumed: {energy} J")
+        print(f"Time used: {time_ms} ms")
+        results_file.write(f"{file_name}, {energy}, {time_ms}\n")
+        results_file.flush()
+
+    # uni_mode = True
+    # model_name = "CUSUM"
+    # for file_name in os.listdir("datasets/csv"):
+    #     print(f"Testing file {file_name}")
+    #     if uni_mode:
+    #         # skip if  the dataset is multivariate
+    #         data = np.loadtxt("datasets/csv/" + file_name, delimiter=",")
+    #         if len(data.shape) > 1:
+    #             print(f"Skipping {file_name}")
+    #             continue
+
+    # try:
+    #     energy, time_ms = test_model(ser, data_queue, model_name, file_name)
+    # except:
+    #     print(f"Error: {file_name}")
+    #     continue
+
+    results_file.close()
     ser.close()
 
     stop[0] = True
