@@ -175,3 +175,5 @@ results
 params
 
 sdkconfig
+
+src/algorithms/cusum
