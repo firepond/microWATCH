@@ -176,4 +176,4 @@ params
 
 sdkconfig
 
-src/algorithms/cusum
+src/algorithms/cusum/
