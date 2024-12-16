@@ -12,6 +12,7 @@ and a model prior probability over each of the models in the collection.
 """
 
 import numpy as np
+from scipy import special
 import utils
 
 from BVARNIGDPD import BVARNIGDPD

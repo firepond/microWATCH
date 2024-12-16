@@ -19,7 +19,10 @@ def clean_cps(locations, n_obs):
 def scores(locations, dataset_name, n_obs):
     # Initialize the attribute if it doesn't exist
     if not hasattr(scores, "annotations"):
-        scores.annotations = load_annotations("./annotations.json", dataset_name)
+        scores.annotations = load_annotations(
+            "/home/campus.ncl.ac.uk/c4060464/esp32/microWATCH/annotations.json",
+            dataset_name,
+        )
 
     locations = clean_cps(locations, n_obs)
     f1, precision, recall = f_measure(scores.annotations, locations, return_PR=True)

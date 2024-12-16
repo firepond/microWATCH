@@ -1,6 +1,8 @@
 import copy
+from itertools import product
 import json
 import os
+import concurrent.futures
 import numpy as np
 from BVARNIG import BVARNIG
 from CpModel import CpModel
@@ -135,9 +137,17 @@ def detect(file_name, intensity, prior_a, prior_b):
     return locations, mat.shape[0]
 
 
+def detect_and_score(file, intensity, prior_a, prior_b):
+    locations, length = detect(file, intensity, prior_a, prior_b)
+    dataset_name = file.split("/")[-1].split(".")[0]
+    f1, cover = accuracy.scores(locations, dataset_name, length)
+    score = f1 + cover
+    return score, intensity, prior_a, prior_b
+
+
 def main():
     # Directory containing the files
-    directory = "../datasets/json"
+    directory = "/home/campus.ncl.ac.uk/c4060464/esp32/microWATCH/datasets/json"
 
     # List all files in the directory
     files = [
@@ -145,28 +155,44 @@ def main():
         for f in os.listdir(directory)
         if os.path.isfile(os.path.join(directory, f))
     ]
+
     for file in files:
         # try all combinations of parameters, save the best one
         best_params = {}
         best_score = -1
-        for intensity in bocpd_intensities:
-            for prior_a in bocpd_prior_a:
-                for prior_b in bocpd_prior_b:
-                    try:
-                        locations, length = detect(file, intensity, prior_a, prior_b)
-                        dataset_name = file.split("/")[-1].split(".")[0]
-                        f1, cover = accuracy.scores(locations, dataset_name, length)
-                        score = f1 + cover
-                        if score > best_score:
-                            best_score = score
-                            best_params = {
-                                "intensity": intensity,
-                                "prior_a": prior_a,
-                                "prior_b": prior_b,
-                            }
-                    except Exception as e:
-                        print(e)
-        # write best parameters to file
+
+        # 准备所有参数组合
+        param_combinations = list(
+            product(bocpd_intensities, bocpd_prior_a, bocpd_prior_b)
+        )
+
+        # 并行执行检测和评分
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            # 提交所有组合的任务
+            futures = {
+                executor.submit(detect_and_score, file, intensity, prior_a, prior_b): (
+                    intensity,
+                    prior_a,
+                    prior_b,
+                )
+                for (intensity, prior_a, prior_b) in param_combinations
+            }
+
+            for future in concurrent.futures.as_completed(futures):
+                try:
+                    score, intensity, prior_a, prior_b = future.result()
+                    if score > best_score:
+                        best_score = score
+                        best_params = {
+                            "intensity": intensity,
+                            "prior_a": prior_a,
+                            "prior_b": prior_b,
+                        }
+                except Exception as e:
+                    print(f"Error processing {futures[future]}: {e}")
+
+        # 将最佳参数写入文件
+        print(f"Best parameters for {file}: {best_params}")
         with open("best_params_bocpdms.txt", "a") as f:
             f.write(f"{file}: {best_params}\n")
 

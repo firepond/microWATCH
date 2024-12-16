@@ -10,19 +10,14 @@ Description: Implements the VB-approximation of the Density Power Divergence
 """
 
 
-try:
-    from ulab import numpy as np
-    from ulab import scipy as spy
-    from ulab.scipy.special import gammaln
-    from ulab.scipy.linalg import solve_triangular
-except:
-    import numpy as np
-    import scipy as spy
-    from scipy.special import gammaln
-    from scipy import linalg
-    from scipy import stats
-    from scipy.linalg import solve_triangular
-
+import numpy as np
+import scipy as spy
+from scipy.special import gammaln
+from scipy import linalg
+from scipy import stats
+from scipy.linalg import solve_triangular
+import scipy
+import scipy.special as special
 
 from BVARNIG import BVARNIG
 

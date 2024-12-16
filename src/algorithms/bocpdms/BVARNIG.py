@@ -8,22 +8,19 @@ Description: Implements Bayesian Linear Autoregression with the NIG model
 """
 
 
-try:
-    from ulab import numpy as np
-    from ulab import scipy as spy
-    from ulab.scipy.special import gammaln
-    from ulab.scipy.linalg import solve_triangular
-except:
-    import numpy as np
-    import scipy as spy
-    from scipy.special import gammaln
-    from scipy import linalg
-    from scipy import stats
-    from scipy.linalg import solve_triangular
+import numpy as np
+import scipy as spy
+from scipy.special import gammaln
+from scipy import linalg
+from scipy import stats
+from scipy.linalg import solve_triangular
+
+from numpy.linalg import slogdet
 
 
 from probability_model import ProbabilityModel
 from nearestPD import NPD
+
 import utils
 
 
@@ -1079,7 +1076,7 @@ class BVARNIG(ProbabilityModel):
         """STEP 4.1: Computation of the prior inverse, which will be needed
         at each iteration to inform the chaingepoint probabilities"""
         self.D_inv = np.linalg.inv(self.prior_var_beta)  # not efficient if D diagonal
-        _, self.D_inv_log_det = utils.slogdet(self.D_inv)
+        _, self.D_inv_log_det = slogdet(self.D_inv)
 
         # QR ADAPTION
         self.D_inv_Q, self.D_inv_R = np.linalg.qr(self.D_inv)
@@ -1119,7 +1116,7 @@ class BVARNIG(ProbabilityModel):
         orthogonal matrix, so det(Q) = 1 and as 
         det(QR) = det(Q)det(R), it follows det(QR) = det(R)"""
 
-        sign, value = utils.slogdet(self.M_inv_1_rt[0, :, :])
+        sign, value = slogdet(self.M_inv_1_rt[0, :, :])
         self.log_det_1_rt[0] = self.log_det_1_rt[1] = (
             value  # s.p.d. matrices have pos dets
         )
@@ -1160,7 +1157,7 @@ class BVARNIG(ProbabilityModel):
         """Brute force determinant calc for small matrix + recursive update for
         determinant of M(r,t). We take -value because log(det(M^-1)) =
         -log(det(M))"""
-        sign2, value2 = utils.slogdet(small_matrix_inv)
+        sign2, value2 = slogdet(small_matrix_inv)
         self.log_det_2_rt[0] = self.log_det_2_rt[1] = value2 + self.log_det_1_rt[0]
 
         """Woodbury Update-Inversion formula for M_inv_2, see handwritten notes
@@ -1445,7 +1442,7 @@ class BVARNIG(ProbabilityModel):
         self.C_t_inv_r0 = np.identity(self.S1 * self.S2) - np.matmul(
             self.X_tp1, np.matmul(self.prior_var_beta, np.transpose(self.X_tp1))
         )
-        _, log_det = utils.slogdet((self.a / self.b) * self.C_t_inv_r0)
+        _, log_det = slogdet((self.a / self.b) * self.C_t_inv_r0)
         self.predictive_variance_r0_log_det = log_det
         """Ensure that our log density is upper bounded to avoid ugly numerical
         issues. Usually, this minimum has no effect because the density is way
@@ -1775,7 +1772,7 @@ class BVARNIG(ProbabilityModel):
         -new_log_det because we take the log-det of the inverse of the matrix
         whose log det we wanna store."""
 
-        sign, new_log_det = utils.slogdet(new_M_inv)
+        sign, new_log_det = slogdet(new_M_inv)
         self.log_det_1_rt = np.insert(self.log_det_2_rt.copy(), 0, new_log_det)
 
         # QR ADAPTION
@@ -1823,7 +1820,7 @@ class BVARNIG(ProbabilityModel):
             )
 
             """Update log_det_2"""
-            sign, value = utils.slogdet(small_matrix_inv)
+            sign, value = slogdet(small_matrix_inv)
             self.log_det_2_rt[r] = value + self.log_det_1_rt[r]
 
             # QR ADAPTION
@@ -2041,7 +2038,7 @@ class BVARNIG(ProbabilityModel):
                 return -pow(10, 5)
             else:
                 log_term = np.log(log_term)
-                _, log_det = utils.slogdet(prec)
+                _, log_det = slogdet(prec)
             if np.isnan(log_det):
                 print("log_det nan: problem persists!")
 
@@ -2052,7 +2049,7 @@ class BVARNIG(ProbabilityModel):
         I have never entered this condition in any simulation."""
         if np.isnan(log_det):
             print("nan log det")
-            _, log_det = utils.slogdet(prec)
+            _, log_det = slogdet(prec)
             log_det = 1.0 / log_det  # since we want the log det of cov mat
             if np.isnan(log_det):
                 print("problem persists!")

@@ -5,6 +5,8 @@ from collections import deque
 import threading
 import time
 from time import sleep
+
+import numpy as np
 import usb_logger
 
 
@@ -14,17 +16,18 @@ def get_latest_data(data_queue):
     return []
 
 
-def test_model(file_name, data_queue, WATCH_index):
+def test_model(file_name, data_queue, model_name):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(("192.168.50.4", 5000))  # Replace with Raspberry Pi's IP address
 
     commands = [
-        "M+WATCH" + str(WATCH_index),
+        "M+" + model_name,
         "D+datasets/csv/" + file_name,
     ]
 
     for command in commands:
         client.sendall(command.encode())
+        sleep(1)
         response = client.recv(4096).decode()
         print("Server:", response)
 
@@ -40,11 +43,16 @@ def test_model(file_name, data_queue, WATCH_index):
 
     # print the response until get a "F" from the server
 
-    while "F\n" not in response:
+    while "F:" not in response:
         response = client.recv(4096).decode()
         print(f"Server:{response} end")
+    # prase run times: int after "F:"
+    messages = response.split("\n")
+
+    run_count = int(messages[0].split("F:")[-1])
     # parse time:
-    time_used = response.split("Time:")[-1].split("ms")[0]
+
+    time_used = messages[1].split("Time:")[-1].split("ms")[0]
     print(f"Time used: {time_used} ms")
 
     power_data = get_latest_data(data_queue)
@@ -55,7 +63,7 @@ def test_model(file_name, data_queue, WATCH_index):
     filtered_data = [
         data for data in power_data if data[0] >= start_stamp and data[0] <= end_stamp
     ]
-    energy_consumed = (filtered_data[-1][3] - filtered_data[0][3]) / 100
+    energy_consumed = (filtered_data[-1][3] - filtered_data[0][3]) / run_count
     print(f"Energy consumed: {energy_consumed} J")
 
     sleep(1)
@@ -69,7 +77,7 @@ def test_model(file_name, data_queue, WATCH_index):
 def main():
     # start usb_logger in another thread
     sps = 100
-    max_size = sps * 100
+    max_size = sps * 100000
     data_queue = deque(maxlen=max_size)
     stop = [False]
     usb_logger_thread = threading.Thread(
@@ -79,22 +87,19 @@ def main():
     usb_logger_thread.start()
     sleep(5)
 
-    # for all file in "datasets/csv" folder
-    # for all index from 0 to 38
-    # then save result to a  file
+    result_file_name = "pi_rbocpdms_results.csv"
 
-    result_file_name = "pi_watch_results.csv"
+    result_file = open(result_file_name, "a")
+    result_file.write("file_name,  energy_consumed(J), time_used(ms)\n")
 
-    result_file = open(result_file_name, "w")
-    result_file.write("file_name, index, energy_consumed(J), time_used(ms)\n")
+    model_name = "RBOCPDMS"
+    # uni_variate = True
+    for file_name in os.listdir("datasets/csv"):
 
-    for index in range(39):
-        # list all files in the folder
-        # get the file name
-        for file_name in os.listdir("datasets/csv"):
-            print(f"Testing file {file_name} with index {index}")
-            energy_conusmed, time_used = test_model(file_name, data_queue, index)
-            result_file.write(f"{file_name}, {index}, {energy_conusmed}, {time_used}\n")
+        print(f"Testing file {file_name}")
+        energy_conusmed, time_used = test_model(file_name, data_queue, model_name)
+        result_file.write(f"{file_name}, {energy_conusmed}, {time_used}\n")
+        result_file.flush()
 
     result_file.close()
     stop[0] = True

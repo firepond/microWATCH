@@ -12,13 +12,17 @@ Copyright: 2019, The Alan Turing Institute
 """
 
 bocpd_intensities = [10, 50, 100, 200]
+# bocpd_intensities = [10]
 bocpd_prior_a = [0.01, 0.1, 1.0, 10, 100]
+# bocpd_prior_a = [0.01, 1]
 bocpd_prior_b = [0.01, 0.1, 1.0, 10, 100]
+# bocpd_prior_b = [0.01]
 
 
 threshold = 100
 
 import copy
+from itertools import product
 import json
 import multiprocessing
 import os
@@ -32,6 +36,7 @@ from BVAR_NIG_DPD import BVARNIGDPD
 from detector import Detector
 
 from multiprocessing import Process, Manager
+import concurrent.futures
 
 
 def load_dataset(filename):
@@ -116,10 +121,10 @@ def run_rbocpdms(mat, params):
     return detector
 
 
-def detect(input_list):
+def detect(file_name, intensity, prior_a, prior_b, alpha_param=0.5, alpha_rld=0.5):
 
-    # input_list  = file_name, intensity, prior_a, prior_b, index
-    file_name, intensity, prior_a, prior_b, index = input_list
+    # # input_list  = file_name, intensity, prior_a, prior_b, index
+    # file_name, intensity, prior_a, prior_b, alpha_param, alpha_rld = input_list
 
     data, mat = load_dataset(file_name)
 
@@ -128,8 +133,8 @@ def detect(input_list):
     args["prior_a"] = prior_a
     args["prior_b"] = prior_b
     args["threshold"] = threshold
-    args["alpha_param"] = 0.5
-    args["alpha_rld"] = 0.5
+    args["alpha_param"] = alpha_param
+    args["alpha_rld"] = alpha_rld
 
     # setting S1 as dimensionality follows the 30portfolio_ICML18.py script.
     # other settings mostly taken from the well log example
@@ -176,7 +181,16 @@ def detect(input_list):
     # convert to Python ints
     locations = [int(loc) for loc in locations]
 
-    return locations, mat.shape[0], index
+    return locations, mat.shape[0]
+
+
+def detect_and_score(file, intensity, prior_a, prior_b):
+
+    locations, length = detect(file, intensity, prior_a, prior_b)
+    dataset_name = file.split("/")[-1].split(".")[0]
+    f1, cover = accuracy.scores(locations, dataset_name, length)
+    score = f1 + cover
+    return score, intensity, prior_a, prior_b
 
 
 def main():
@@ -184,8 +198,18 @@ def main():
     # Directory containing the files
     directory = "/home/campus.ncl.ac.uk/c4060464/esp32/microWATCH/datasets/json"
 
-    with open("best_params_rbocpdms.txt", "w") as f:
-        f.write("file, best_params\n")
+    # with open("best_params_rbocpdms.txt", "w") as f:
+    # f.write("file, intensity, prior_a, prior_b\n")
+    results_file = "best_params_rbocpdms.txt"
+    # read existing results, then check if the file has already been processed, if so, skip it
+    processed_files = []
+    if os.path.exists(results_file):
+        with open(results_file, "r") as f:
+            lines = f.readlines()
+            # skip the header
+            for line in lines[1:]:
+                dataset_name = line.split(",")[0].strip().split("/")[-1].split(".")[0]
+                processed_files.append(dataset_name)
 
     # List all files in the directory
     files = [
@@ -194,40 +218,59 @@ def main():
         if os.path.isfile(os.path.join(directory, f))
     ]
     for file in files:
+        # skip if  in processed files
+        cur_dataset_name = file.split("/")[-1].split(".")[0]
+        if cur_dataset_name in processed_files:
+            print(f"Skipping {file}")
+            continue
+        print(f"Processing {file}")
         # try all combinations of parameters, save the best one
-        best_params = {}
+        best_params = []
         best_score = -1
-        # permutation list  of all parameters: intensity, prior_a, prior_b
-        permutation = []
-        index = 0
-        for intensity in bocpd_intensities:
-            for prior_a in bocpd_prior_a:
-                for prior_b in bocpd_prior_b:
-                    permutation.append([file, intensity, prior_a, prior_b, index])
-                    index += 1
+        bocpd_alpha_param = [0.5]
+        bocpd_alpha_rld = [0.5]
+        # 准备所有参数组合
+        param_combinations = list(
+            product(
+                bocpd_intensities,
+                bocpd_prior_a,
+                bocpd_prior_b,
+            )
+        )
 
-        print(len(permutation))
-        num_cores = multiprocessing.cpu_count() - 8
-        results = multiprocessing.Pool(num_cores).map(detect, permutation)
+        # 并行执行检测和评分
+        with concurrent.futures.ProcessPoolExecutor() as executor:
+            # 提交所有组合的任务
+            futures = {
+                executor.submit(detect_and_score, file, intensity, prior_a, prior_b): (
+                    intensity,
+                    prior_a,
+                    prior_b,
+                )
+                for (intensity, prior_a, prior_b) in param_combinations
+            }
 
-        for i in results:
-            locations, length, index = i
-            dataset_name = file.split("/")[-1].split(".")[0]
-            f1, cover = accuracy.scores(locations, dataset_name, length)
-            score = f1 + cover
-            if score > best_score:
-                best_score = score
-                best_params = {
-                    "intensity": permutation[index][1],
-                    "prior_a": permutation[index][2],
-                    "prior_b": permutation[index][3],
-                    "score": score,
-                }
+            for future in concurrent.futures.as_completed(futures):
+                try:
+                    score, intensity, prior_a, prior_b = future.result()
+                    if score > best_score:
+                        best_score = score
+                        best_params = [intensity, prior_a, prior_b]
 
-        # write best parameters to file
-        print(f"{file}: {best_params}")
+                except Exception as e:
+                    print(f"Error processing {futures[future]}: {e}")
+
+        # 将最佳参数写入文件
+        print(f"Best parameters for {file}: {best_params}")
         with open("best_params_rbocpdms.txt", "a") as f:
-            f.write(f"{file}: {best_params}\n")
+            if len(best_params) == 3:
+                intensity = best_params[0]
+                prior_a = best_params[1]
+                prior_b = best_params[2]
+
+                f.write(f"{file}, {intensity}, {prior_a}, {prior_b}\n")
+            else:
+                f.write(f"{file}, None, None, None\n")
 
 
 if __name__ == "__main__":
