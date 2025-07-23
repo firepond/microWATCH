@@ -1,6 +1,0 @@
-file, intensity, prior_a, prior_b
-/home/campus.ncl.ac.uk/c4060464/esp32/microWATCH/datasets/json/shanghai_license.json, 100, 0.01, 0.1
-/home/campus.ncl.ac.uk/c4060464/esp32/microWATCH/datasets/json/jfk_passengers.json, 100, 0.01, 0.1
-/home/campus.ncl.ac.uk/c4060464/esp32/microWATCH/datasets/json/well_log.json, 10, 10, 1.0
-/home/campus.ncl.ac.uk/c4060464/esp32/microWATCH/datasets/json/children_per_woman.json, 50, 10, 0.01
-/home/campus.ncl.ac.uk/c4060464/esp32/microWATCH/datasets/json/uk_coal_employ.json, None, None, None
