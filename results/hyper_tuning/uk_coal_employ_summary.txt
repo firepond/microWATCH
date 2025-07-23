@@ -1,0 +1,37 @@
+Summary for Dataset: uk_coal_employ
+Processed on: 2025-06-11 11:00:54
+Number of observations: 105
+---------------------------------------------------
+
+Algorithm: WATCH_Stage1
+  Parameter Grid Used: {'threshold_ratio': [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], 'new_dist_buffer_size': [3, 5, 8, 10, 12, 16, 32, 48, 64, 80, 96, 112, 128], 'batch_size': [3, 5, 7, 10], 'max_dist_size': [8, 16, 32, 48, 64, 80, 96, 112, 128], 'version': [6]}
+  Best Combined Score: 0.8698
+  Best F1 Score: 0.5133
+  Best Cover Score: 0.3565
+  Best Parameters: {'threshold_ratio': 0.1, 'new_dist_buffer_size': 3, 'batch_size': 5, 'max_dist_size': 8, 'version': 6}
+  Execution Time for best: 0.00s
+---------------------------------------
+Algorithm: WATCH_Stage3
+  Parameter Grid Used: {'threshold_ratio': [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], 'new_dist_buffer_size': [3, 5, 8, 10, 12, 16, 32, 48, 64, 80, 96, 112, 128], 'batch_size': [3, 5, 7, 10], 'max_dist_size': [8, 16, 32, 48, 64, 80, 96, 112, 128], 'version': [6]}
+  Best Combined Score: 0.8698
+  Best F1 Score: 0.5133
+  Best Cover Score: 0.3565
+  Best Parameters: {'threshold_ratio': 0.1, 'new_dist_buffer_size': 3, 'batch_size': 7, 'max_dist_size': 96, 'version': 6}
+  Execution Time for best: 0.00s
+---------------------------------------
+Algorithm: WATCH_Stage3_List
+  Parameter Grid Used: {'threshold_ratio': [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], 'new_dist_buffer_size': [3, 5, 8, 10, 12, 16, 32, 48, 64, 80, 96, 112, 128], 'batch_size': [3, 5, 7, 10], 'max_dist_size': [8, 16, 32, 48, 64, 80, 96, 112, 128], 'version': [6]}
+  Best Combined Score: 0.8698
+  Best F1 Score: 0.5133
+  Best Cover Score: 0.3565
+  Best Parameters: {'threshold_ratio': 0.1, 'new_dist_buffer_size': 3, 'batch_size': 7, 'max_dist_size': 16, 'version': 6}
+  Execution Time for best: 0.00s
+---------------------------------------
+Algorithm: WATCH_Origin
+  Parameter Grid Used: {'threshold_ratio': [1.0, 1.5, 2.0, 2.5, 3.0, 3.5], 'new_dist_buffer_size': [3, 5, 8, 10], 'batch_size': [3, 5, 7, 10], 'max_dist_size': [0, 25, 50, 75]}
+  Best Combined Score: 1.5590
+  Best F1 Score: 0.9565
+  Best Cover Score: 0.6025
+  Best Parameters: {'threshold_ratio': 1.5, 'new_dist_buffer_size': 8, 'batch_size': 5, 'max_dist_size': 50}
+  Execution Time for best: 0.03s
+---------------------------------------

@@ -1,0 +1,929 @@
+Using CSV folder: /home/firepond/development/microCPD/datasets/csv
+Using params file: /home/firepond/development/microCPD/params/params_watch_best.csv
+
+
+--- Processing Dataset: global_co2.csv ---
+Loaded specific parameters for global_co2 (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 2.926155974933169, 'max_dist_size': 78, 'new_dist_buffer_size': 48}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [85], Avg Time (10 runs): 0.033440s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [95], Avg Time (10 runs): 0.000819s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [95], Avg Time (10 runs): 0.000570s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [95], Avg Time (10 runs): 0.000509s
+
+
+--- Processing Dataset: children_per_woman.csv ---
+Loaded specific parameters for children_per_woman (dist_idx 6): {'batch_size': 4, 'threshold_ratio': 3.1232240824237176, 'max_dist_size': 97, 'new_dist_buffer_size': 10}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [108, 176, 192], Avg Time (10 runs): 0.277467s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [28, 52, 68, 80], Avg Time (10 runs): 0.003230s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [116, 132, 144, 176], Avg Time (10 runs): 0.003878s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [116, 132, 144, 176], Avg Time (10 runs): 0.003592s
+
+
+--- Processing Dataset: lga_passengers.csv ---
+Loaded specific parameters for lga_passengers (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 2.2521306544643513, 'max_dist_size': 94, 'new_dist_buffer_size': 4}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [15, 21, 27, 123, 129, 135, 144, 168, 279, 288, 294], Avg Time (10 runs): 0.569006s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [15, 27, 339, 345], Avg Time (10 runs): 0.008167s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [15, 123, 129, 168, 294], Avg Time (10 runs): 0.009191s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [15, 123, 129, 168, 294], Avg Time (10 runs): 0.008361s
+
+
+--- Processing Dataset: usd_isk.csv ---
+Loaded specific parameters for usd_isk (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 2.465336953547502, 'max_dist_size': 19, 'new_dist_buffer_size': 25}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [], Avg Time (10 runs): 0.024821s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [33, 117], Avg Time (10 runs): 0.000972s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [33, 117], Avg Time (10 runs): 0.000549s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [33, 117], Avg Time (10 runs): 0.000461s
+
+
+--- Processing Dataset: robocalls.csv ---
+Loaded specific parameters for robocalls (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 3.5514559211333503, 'max_dist_size': 53, 'new_dist_buffer_size': 3}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [3, 9, 15, 36], Avg Time (10 runs): 0.021602s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [3, 9, 36], Avg Time (10 runs): 0.000674s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [3, 9, 36], Avg Time (10 runs): 0.000455s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [3, 9, 36], Avg Time (10 runs): 0.000501s
+
+
+--- Processing Dataset: rail_lines.csv ---
+Loaded specific parameters for rail_lines (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 3.7141263735898256, 'max_dist_size': 34, 'new_dist_buffer_size': 5}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [5, 25], Avg Time (10 runs): 0.006876s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [5, 25], Avg Time (10 runs): 0.000272s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [5, 25], Avg Time (10 runs): 0.000148s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [5, 25], Avg Time (10 runs): 0.000132s
+
+
+--- Processing Dataset: occupancy.csv ---
+Loaded specific parameters for occupancy (dist_idx 6): {'batch_size': 6, 'threshold_ratio': 1.65656406383218, 'max_dist_size': 13, 'new_dist_buffer_size': 14}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [54, 96, 120, 144, 186, 240, 258, 342, 408, 426, 444, 468], Avg Time (10 runs): 0.035219s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [30, 54, 96, 144, 186, 234, 270, 324, 342, 360, 420, 438, 456], Avg Time (10 runs): 0.001308s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [30, 54, 96, 144, 186, 234, 270, 324, 342, 360, 420, 438, 456], Avg Time (10 runs): 0.000737s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [30, 54, 96, 144, 186, 234, 270, 324, 342, 360, 420, 438, 456], Avg Time (10 runs): 0.000741s
+
+
+--- Processing Dataset: bitcoin.csv ---
+Loaded specific parameters for bitcoin (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 3.5659278429353223, 'max_dist_size': 17, 'new_dist_buffer_size': 14}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [15, 85, 515, 550, 570, 585, 600, 625, 695], Avg Time (10 runs): 0.061412s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [15, 85, 520, 545, 570, 585, 600, 625, 670, 705, 750], Avg Time (10 runs): 0.002358s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [15, 85, 520, 545, 570, 585, 600, 625, 705, 750], Avg Time (10 runs): 0.001197s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [15, 85, 520, 545, 570, 585, 600, 625, 705, 750], Avg Time (10 runs): 0.001189s
+
+
+--- Processing Dataset: centralia.csv ---
+Loaded specific parameters for centralia (dist_idx 6): {'batch_size': 6, 'threshold_ratio': 2.504126059093505, 'max_dist_size': 36, 'new_dist_buffer_size': 12}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [12], Avg Time (10 runs): 0.001321s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [12], Avg Time (10 runs): 0.000105s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [12], Avg Time (10 runs): 0.000039s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [12], Avg Time (10 runs): 0.000031s
+
+
+--- Processing Dataset: run_log.csv ---
+Loaded specific parameters for run_log (dist_idx 6): {'batch_size': 6, 'threshold_ratio': 3.194567720502295, 'max_dist_size': 36, 'new_dist_buffer_size': 13}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [48, 66, 84, 132, 150, 210, 264, 312, 360], Avg Time (10 runs): 0.054442s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [60, 96, 114, 174, 204, 234], Avg Time (10 runs): 0.001517s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [60, 96, 114, 174, 204, 240, 258, 318, 336], Avg Time (10 runs): 0.001218s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [60, 96, 114, 174, 204, 240, 258, 318, 336], Avg Time (10 runs): 0.001011s
+
+
+--- Processing Dataset: quality_control_3.csv ---
+Loaded specific parameters for quality_control_3 (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 3.923311963335901, 'max_dist_size': 70, 'new_dist_buffer_size': 42}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [180], Avg Time (10 runs): 0.063624s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [180], Avg Time (10 runs): 0.002179s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [180], Avg Time (10 runs): 0.001236s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [180], Avg Time (10 runs): 0.001032s
+
+
+--- Processing Dataset: bank.csv ---
+Loaded specific parameters for bank (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 2.391609329898951, 'max_dist_size': 35, 'new_dist_buffer_size': 26}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [108], Avg Time (10 runs): 0.079662s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [], Avg Time (10 runs): 0.002751s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [], Avg Time (10 runs): 0.001086s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [], Avg Time (10 runs): 0.001189s
+
+
+--- Processing Dataset: scanline_42049.csv ---
+Loaded specific parameters for scanline_42049 (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 2.4748196057298077, 'max_dist_size': 44, 'new_dist_buffer_size': 15}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [57, 78, 135, 168, 183, 276, 336, 351], Avg Time (10 runs): 0.238620s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [60, 78, 168, 183, 276, 300, 348, 363, 468], Avg Time (10 runs): 0.005266s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [60, 78, 168, 183, 276, 348, 363, 468], Avg Time (10 runs): 0.003773s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [60, 78, 168, 183, 276, 348, 363, 468], Avg Time (10 runs): 0.003429s
+
+
+--- Processing Dataset: homeruns.csv ---
+Loaded specific parameters for homeruns (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 2.0334422385985906, 'max_dist_size': 55, 'new_dist_buffer_size': 18}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [18, 36, 60, 81], Avg Time (10 runs): 0.042434s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [18, 84], Avg Time (10 runs): 0.001720s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [18, 60], Avg Time (10 runs): 0.001531s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [18, 60], Avg Time (10 runs): 0.001550s
+
+
+--- Processing Dataset: jfk_passengers.csv ---
+Loaded specific parameters for jfk_passengers (dist_idx 6): {'batch_size': 6, 'threshold_ratio': 3.049012289781777, 'max_dist_size': 85, 'new_dist_buffer_size': 35}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [330, 366], Avg Time (10 runs): 0.088990s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [330], Avg Time (10 runs): 0.002490s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [330], Avg Time (10 runs): 0.001583s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [330], Avg Time (10 runs): 0.001436s
+
+
+--- Processing Dataset: gdp_iran.csv ---
+Loaded specific parameters for gdp_iran (dist_idx 6): {'batch_size': 4, 'threshold_ratio': 2.50696903869243, 'max_dist_size': 72, 'new_dist_buffer_size': 12}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [12, 44, 56], Avg Time (10 runs): 0.015245s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [12], Avg Time (10 runs): 0.000716s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [12], Avg Time (10 runs): 0.000476s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [12], Avg Time (10 runs): 0.000483s
+
+
+--- Processing Dataset: debt_ireland.csv ---
+Loaded specific parameters for debt_ireland (dist_idx 6): {'batch_size': 4, 'threshold_ratio': 1.0030728377051301, 'max_dist_size': 73, 'new_dist_buffer_size': 6}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [8, 16], Avg Time (10 runs): 0.002602s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [8, 16], Avg Time (10 runs): 0.000151s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [8, 16], Avg Time (10 runs): 0.000076s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [8, 16], Avg Time (10 runs): 0.000059s
+
+
+--- Processing Dataset: gdp_japan.csv ---
+Loaded specific parameters for gdp_japan (dist_idx 6): {'batch_size': 4, 'threshold_ratio': 0.6399955689209738, 'max_dist_size': 39, 'new_dist_buffer_size': 31}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [32], Avg Time (10 runs): 0.003450s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [32], Avg Time (10 runs): 0.000167s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [32], Avg Time (10 runs): 0.000097s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [32], Avg Time (10 runs): 0.000085s
+
+
+--- Processing Dataset: uk_coal_employ.csv ---
+Loaded specific parameters for uk_coal_employ (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 1.3934030989008324, 'max_dist_size': 36, 'new_dist_buffer_size': 4}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [5, 15, 30, 45, 55, 65, 75], Avg Time (10 runs): 0.018734s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [], Avg Time (10 runs): 0.000591s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [], Avg Time (10 runs): 0.000327s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [], Avg Time (10 runs): 0.000297s
+
+
+--- Processing Dataset: measles.csv ---
+Loaded specific parameters for measles (dist_idx 6): {'batch_size': 4, 'threshold_ratio': 3.998925561596, 'max_dist_size': 87, 'new_dist_buffer_size': 37}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [164], Avg Time (10 runs): 0.199940s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [], Avg Time (10 runs): 0.005453s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [], Avg Time (10 runs): 0.002252s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [], Avg Time (10 runs): 0.002147s
+
+
+--- Processing Dataset: businv.csv ---
+Loaded specific parameters for businv (dist_idx 6): {'batch_size': 4, 'threshold_ratio': 2.4640464869102985, 'max_dist_size': 50, 'new_dist_buffer_size': 15}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [80, 96, 120, 180, 208, 224, 316], Avg Time (10 runs): 0.113046s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [100, 120, 236, 320], Avg Time (10 runs): 0.002608s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [96, 120, 192, 208, 224], Avg Time (10 runs): 0.001896s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [96, 120, 192, 208, 224], Avg Time (10 runs): 0.001731s
+
+
+--- Processing Dataset: construction.csv ---
+Loaded specific parameters for construction (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 1.5334647839880975, 'max_dist_size': 94, 'new_dist_buffer_size': 22}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [66, 90, 126, 150, 180, 204, 234, 258, 282, 306], Avg Time (10 runs): 0.134101s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [138, 192, 216, 246, 270, 294], Avg Time (10 runs): 0.004853s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [138, 192, 216], Avg Time (10 runs): 0.006029s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [138, 192, 216], Avg Time (10 runs): 0.005732s
+
+
+--- Processing Dataset: quality_control_1.csv ---
+Loaded specific parameters for quality_control_1 (dist_idx 6): {'batch_size': 6, 'threshold_ratio': 3.4974631479776743, 'max_dist_size': 62, 'new_dist_buffer_size': 43}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [108], Avg Time (10 runs): 0.036757s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [144], Avg Time (10 runs): 0.001211s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [144], Avg Time (10 runs): 0.000664s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [144], Avg Time (10 runs): 0.000799s
+
+
+--- Processing Dataset: brent_spot.csv ---
+Loaded specific parameters for brent_spot (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 3.908847059589692, 'max_dist_size': 96, 'new_dist_buffer_size': 7}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [10, 45, 55, 65, 75, 85, 110, 120, 140, 150, 200, 210, 225], Avg Time (10 runs): 0.133718s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [45, 215, 225, 240, 250], Avg Time (10 runs): 0.004491s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [45, 215, 225, 240, 250, 280, 375], Avg Time (10 runs): 0.004260s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [45, 215, 225, 240, 250, 280, 375], Avg Time (10 runs): 0.003874s
+
+
+--- Processing Dataset: us_population.csv ---
+Loaded specific parameters for us_population (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 3.994571628795975, 'max_dist_size': 91, 'new_dist_buffer_size': 43}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [150, 305, 460, 615, 775], Avg Time (10 runs): 0.284001s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [260, 485, 745], Avg Time (10 runs): 0.005533s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [245, 465, 710], Avg Time (10 runs): 0.004036s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [245, 465, 710], Avg Time (10 runs): 0.003969s
+
+
+--- Processing Dataset: iceland_tourism.csv ---
+Loaded specific parameters for iceland_tourism (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 3.7931665285340124, 'max_dist_size': 25, 'new_dist_buffer_size': 18}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [135, 185], Avg Time (10 runs): 0.015593s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [145, 185], Avg Time (10 runs): 0.000605s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [135, 170], Avg Time (10 runs): 0.000365s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [135, 170], Avg Time (10 runs): 0.000325s
+
+
+--- Processing Dataset: shanghai_license.csv ---
+Loaded specific parameters for shanghai_license (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 3.6174341153208647, 'max_dist_size': 93, 'new_dist_buffer_size': 33}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [145], Avg Time (10 runs): 0.080273s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [145], Avg Time (10 runs): 0.001842s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [145], Avg Time (10 runs): 0.001408s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [145], Avg Time (10 runs): 0.001207s
+
+
+--- Processing Dataset: apple.csv ---
+Loaded specific parameters for apple (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 3.284828172094598, 'max_dist_size': 17, 'new_dist_buffer_size': 20}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [320], Avg Time (10 runs): 0.038423s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [130, 200, 230, 275, 320], Avg Time (10 runs): 0.001590s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [130, 200, 230, 275, 320], Avg Time (10 runs): 0.001090s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [130, 200, 230, 275, 320], Avg Time (10 runs): 0.000724s
+
+
+--- Processing Dataset: gdp_argentina.csv ---
+Loaded specific parameters for gdp_argentina (dist_idx 6): {'batch_size': 6, 'threshold_ratio': 2.528171060681956, 'max_dist_size': 47, 'new_dist_buffer_size': 39}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [48], Avg Time (10 runs): 0.005809s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [54], Avg Time (10 runs): 0.000226s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [54], Avg Time (10 runs): 0.000162s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [54], Avg Time (10 runs): 0.000258s
+
+
+--- Processing Dataset: quality_control_5.csv ---
+Loaded specific parameters for quality_control_5 (dist_idx 6): {'batch_size': 6, 'threshold_ratio': 3.4769191081536666, 'max_dist_size': 51, 'new_dist_buffer_size': 3}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [6], Avg Time (10 runs): 0.031268s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [], Avg Time (10 runs): 0.001160s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [], Avg Time (10 runs): 0.000549s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [], Avg Time (10 runs): 0.000602s
+
+
+--- Processing Dataset: nile.csv ---
+Loaded specific parameters for nile (dist_idx 6): {'batch_size': 4, 'threshold_ratio': 2.0449554844364015, 'max_dist_size': 26, 'new_dist_buffer_size': 16}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [28], Avg Time (10 runs): 0.019198s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [28], Avg Time (10 runs): 0.000591s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [28], Avg Time (10 runs): 0.000356s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [28], Avg Time (10 runs): 0.000322s
+
+
+--- Processing Dataset: unemployment_nl.csv ---
+Loaded specific parameters for unemployment_nl (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 2.982100887202743, 'max_dist_size': 87, 'new_dist_buffer_size': 7}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [12, 24, 42, 132, 141, 183], Avg Time (10 runs): 0.216350s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [132, 141], Avg Time (10 runs): 0.005102s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [132, 141, 183], Avg Time (10 runs): 0.003368s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [132, 141, 183], Avg Time (10 runs): 0.003112s
+
+
+--- Processing Dataset: co2_canada.csv ---
+Loaded specific parameters for co2_canada (dist_idx 6): {'batch_size': 6, 'threshold_ratio': 2.5381125131032998, 'max_dist_size': 50, 'new_dist_buffer_size': 24}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [72, 102, 168], Avg Time (10 runs): 0.048449s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [48, 84, 108, 144, 168], Avg Time (10 runs): 0.001057s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [48, 84, 108, 144, 168], Avg Time (10 runs): 0.000835s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [48, 84, 108, 144, 168], Avg Time (10 runs): 0.000668s
+
+
+--- Processing Dataset: ratner_stock.csv ---
+Loaded specific parameters for ratner_stock (dist_idx 6): {'batch_size': 4, 'threshold_ratio': 3.091763487487655, 'max_dist_size': 45, 'new_dist_buffer_size': 24}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [260], Avg Time (10 runs): 0.082050s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [276], Avg Time (10 runs): 0.002933s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [276], Avg Time (10 runs): 0.001714s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [276], Avg Time (10 runs): 0.001510s
+
+
+--- Processing Dataset: well_log.csv ---
+Loaded specific parameters for well_log (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 1.664018272296224, 'max_dist_size': 58, 'new_dist_buffer_size': 3}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [3, 174, 180, 189, 195, 201, 255, 261, 267, 279, 312, 342, 402, 411, 423, 429], Avg Time (10 runs): 0.363935s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [3, 174, 180, 204, 213, 234, 255, 282, 288, 312, 345, 351, 357, 399, 405, 411, 423, 432, 462, 657], Avg Time (10 runs): 0.007924s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [3, 174, 180, 255, 282, 288, 312, 342, 402, 414, 423, 432, 462, 657], Avg Time (10 runs): 0.006733s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [3, 174, 180, 255, 282, 288, 312, 342, 402, 414, 423, 432, 462, 657], Avg Time (10 runs): 0.006283s
+
+
+--- Processing Dataset: scanline_126007.csv ---
+Loaded specific parameters for scanline_126007 (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 1.5579760546766825, 'max_dist_size': 55, 'new_dist_buffer_size': 47}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [110, 295], Avg Time (10 runs): 0.041465s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [110, 295], Avg Time (10 runs): 0.001569s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [180, 255], Avg Time (10 runs): 0.000769s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [180, 255], Avg Time (10 runs): 0.000777s
+
+
+--- Processing Dataset: quality_control_4.csv ---
+Loaded specific parameters for quality_control_4 (dist_idx 6): {'batch_size': 6, 'threshold_ratio': 3.944112231471852, 'max_dist_size': 63, 'new_dist_buffer_size': 21}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [198, 312, 342, 468], Avg Time (10 runs): 0.089707s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [], Avg Time (10 runs): 0.001821s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [], Avg Time (10 runs): 0.000762s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [], Avg Time (10 runs): 0.000904s
+
+
+--- Processing Dataset: quality_control_2.csv ---
+Loaded specific parameters for quality_control_2 (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 1.8667470831364235, 'max_dist_size': 32, 'new_dist_buffer_size': 25}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [99, 135], Avg Time (10 runs): 0.049098s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [99], Avg Time (10 runs): 0.001456s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [99], Avg Time (10 runs): 0.000710s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [99], Avg Time (10 runs): 0.000745s
+
+
+--- Processing Dataset: gdp_croatia.csv ---
+Loaded specific parameters for gdp_croatia (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 0.45379663345080146, 'max_dist_size': 34, 'new_dist_buffer_size': 12}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [15], Avg Time (10 runs): 0.001581s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [15], Avg Time (10 runs): 0.000109s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [15], Avg Time (10 runs): 0.000052s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [15], Avg Time (10 runs): 0.000042s
+
+
+--- Processing Dataset: bee_waggle_6.csv ---
+Loaded specific parameters for bee_waggle_6 (dist_idx 6): {'batch_size': 5, 'threshold_ratio': 2.141205214088942, 'max_dist_size': 34, 'new_dist_buffer_size': 50}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [110, 175, 255, 350, 580], Avg Time (10 runs): 0.040119s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [], Avg Time (10 runs): 0.001874s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [], Avg Time (10 runs): 0.000626s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [], Avg Time (10 runs): 0.000763s
+
+
+--- Processing Dataset: seatbelts.csv ---
+Loaded specific parameters for seatbelts (dist_idx 6): {'batch_size': 3, 'threshold_ratio': 0.8782493715925336, 'max_dist_size': 56, 'new_dist_buffer_size': 43}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [75, 135], Avg Time (10 runs): 0.085524s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [57, 171], Avg Time (10 runs): 0.001420s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [60, 171], Avg Time (10 runs): 0.001127s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [60, 171], Avg Time (10 runs): 0.000989s
+
+
+--- Processing Dataset: ozone.csv ---
+Loaded specific parameters for ozone (dist_idx 6): {'batch_size': 4, 'threshold_ratio': 0.3707351055790592, 'max_dist_size': 96, 'new_dist_buffer_size': 26}
+
+--- Running Stage 0: Original WATCH ---
+Locations: [28], Avg Time (10 runs): 0.005099s
+
+--- Running Stage 1: Python distance (batch mean vs. full dist mean), list-based dist ---
+Locations: [28], Avg Time (10 runs): 0.000199s
+
+--- Running Stage 2: Python distance (batch mean vs. pre-calculated dist mean), list-based points ---
+Locations: [28], Avg Time (10 runs): 0.000125s
+
+--- Running Stage 3: Pre-allocated memory for distribution ---
+Locations: [28], Avg Time (10 runs): 0.000112s
+
+
+--- Ablation Summary ---
+
+Dataset: global_co2.csv
+  Stage0: Time=0.033440s, Locations=[85]
+  Stage1: Time=0.000819s, Locations=[95]
+  Stage2: Time=0.000570s, Locations=[95]
+  Stage3: Time=0.000509s, Locations=[95]
+
+Dataset: children_per_woman.csv
+  Stage0: Time=0.277467s, Locations=[108, 176, 192]
+  Stage1: Time=0.003230s, Locations=[28, 52, 68, 80]
+  Stage2: Time=0.003878s, Locations=[116, 132, 144, 176]
+  Stage3: Time=0.003592s, Locations=[116, 132, 144, 176]
+
+Dataset: lga_passengers.csv
+  Stage0: Time=0.569006s, Locations=[15, 21, 27, 123, 129, 135, 144, 168, 279, 288, 294]
+  Stage1: Time=0.008167s, Locations=[15, 27, 339, 345]
+  Stage2: Time=0.009191s, Locations=[15, 123, 129, 168, 294]
+  Stage3: Time=0.008361s, Locations=[15, 123, 129, 168, 294]
+
+Dataset: usd_isk.csv
+  Stage0: Time=0.024821s, Locations=[]
+  Stage1: Time=0.000972s, Locations=[33, 117]
+  Stage2: Time=0.000549s, Locations=[33, 117]
+  Stage3: Time=0.000461s, Locations=[33, 117]
+
+Dataset: robocalls.csv
+  Stage0: Time=0.021602s, Locations=[3, 9, 15, 36]
+  Stage1: Time=0.000674s, Locations=[3, 9, 36]
+  Stage2: Time=0.000455s, Locations=[3, 9, 36]
+  Stage3: Time=0.000501s, Locations=[3, 9, 36]
+
+Dataset: rail_lines.csv
+  Stage0: Time=0.006876s, Locations=[5, 25]
+  Stage1: Time=0.000272s, Locations=[5, 25]
+  Stage2: Time=0.000148s, Locations=[5, 25]
+  Stage3: Time=0.000132s, Locations=[5, 25]
+
+Dataset: occupancy.csv
+  Stage0: Time=0.035219s, Locations=[54, 96, 120, 144, 186, 240, 258, 342, 408, 426, 444, 468]
+  Stage1: Time=0.001308s, Locations=[30, 54, 96, 144, 186, 234, 270, 324, 342, 360, 420, 438, 456]
+  Stage2: Time=0.000737s, Locations=[30, 54, 96, 144, 186, 234, 270, 324, 342, 360, 420, 438, 456]
+  Stage3: Time=0.000741s, Locations=[30, 54, 96, 144, 186, 234, 270, 324, 342, 360, 420, 438, 456]
+
+Dataset: bitcoin.csv
+  Stage0: Time=0.061412s, Locations=[15, 85, 515, 550, 570, 585, 600, 625, 695]
+  Stage1: Time=0.002358s, Locations=[15, 85, 520, 545, 570, 585, 600, 625, 670, 705, 750]
+  Stage2: Time=0.001197s, Locations=[15, 85, 520, 545, 570, 585, 600, 625, 705, 750]
+  Stage3: Time=0.001189s, Locations=[15, 85, 520, 545, 570, 585, 600, 625, 705, 750]
+
+Dataset: centralia.csv
+  Stage0: Time=0.001321s, Locations=[12]
+  Stage1: Time=0.000105s, Locations=[12]
+  Stage2: Time=0.000039s, Locations=[12]
+  Stage3: Time=0.000031s, Locations=[12]
+
+Dataset: run_log.csv
+  Stage0: Time=0.054442s, Locations=[48, 66, 84, 132, 150, 210, 264, 312, 360]
+  Stage1: Time=0.001517s, Locations=[60, 96, 114, 174, 204, 234]
+  Stage2: Time=0.001218s, Locations=[60, 96, 114, 174, 204, 240, 258, 318, 336]
+  Stage3: Time=0.001011s, Locations=[60, 96, 114, 174, 204, 240, 258, 318, 336]
+
+Dataset: quality_control_3.csv
+  Stage0: Time=0.063624s, Locations=[180]
+  Stage1: Time=0.002179s, Locations=[180]
+  Stage2: Time=0.001236s, Locations=[180]
+  Stage3: Time=0.001032s, Locations=[180]
+
+Dataset: bank.csv
+  Stage0: Time=0.079662s, Locations=[108]
+  Stage1: Time=0.002751s, Locations=[]
+  Stage2: Time=0.001086s, Locations=[]
+  Stage3: Time=0.001189s, Locations=[]
+
+Dataset: scanline_42049.csv
+  Stage0: Time=0.238620s, Locations=[57, 78, 135, 168, 183, 276, 336, 351]
+  Stage1: Time=0.005266s, Locations=[60, 78, 168, 183, 276, 300, 348, 363, 468]
+  Stage2: Time=0.003773s, Locations=[60, 78, 168, 183, 276, 348, 363, 468]
+  Stage3: Time=0.003429s, Locations=[60, 78, 168, 183, 276, 348, 363, 468]
+
+Dataset: homeruns.csv
+  Stage0: Time=0.042434s, Locations=[18, 36, 60, 81]
+  Stage1: Time=0.001720s, Locations=[18, 84]
+  Stage2: Time=0.001531s, Locations=[18, 60]
+  Stage3: Time=0.001550s, Locations=[18, 60]
+
+Dataset: jfk_passengers.csv
+  Stage0: Time=0.088990s, Locations=[330, 366]
+  Stage1: Time=0.002490s, Locations=[330]
+  Stage2: Time=0.001583s, Locations=[330]
+  Stage3: Time=0.001436s, Locations=[330]
+
+Dataset: gdp_iran.csv
+  Stage0: Time=0.015245s, Locations=[12, 44, 56]
+  Stage1: Time=0.000716s, Locations=[12]
+  Stage2: Time=0.000476s, Locations=[12]
+  Stage3: Time=0.000483s, Locations=[12]
+
+Dataset: debt_ireland.csv
+  Stage0: Time=0.002602s, Locations=[8, 16]
+  Stage1: Time=0.000151s, Locations=[8, 16]
+  Stage2: Time=0.000076s, Locations=[8, 16]
+  Stage3: Time=0.000059s, Locations=[8, 16]
+
+Dataset: gdp_japan.csv
+  Stage0: Time=0.003450s, Locations=[32]
+  Stage1: Time=0.000167s, Locations=[32]
+  Stage2: Time=0.000097s, Locations=[32]
+  Stage3: Time=0.000085s, Locations=[32]
+
+Dataset: uk_coal_employ.csv
+  Stage0: Time=0.018734s, Locations=[5, 15, 30, 45, 55, 65, 75]
+  Stage1: Time=0.000591s, Locations=[]
+  Stage2: Time=0.000327s, Locations=[]
+  Stage3: Time=0.000297s, Locations=[]
+
+Dataset: measles.csv
+  Stage0: Time=0.199940s, Locations=[164]
+  Stage1: Time=0.005453s, Locations=[]
+  Stage2: Time=0.002252s, Locations=[]
+  Stage3: Time=0.002147s, Locations=[]
+
+Dataset: businv.csv
+  Stage0: Time=0.113046s, Locations=[80, 96, 120, 180, 208, 224, 316]
+  Stage1: Time=0.002608s, Locations=[100, 120, 236, 320]
+  Stage2: Time=0.001896s, Locations=[96, 120, 192, 208, 224]
+  Stage3: Time=0.001731s, Locations=[96, 120, 192, 208, 224]
+
+Dataset: construction.csv
+  Stage0: Time=0.134101s, Locations=[66, 90, 126, 150, 180, 204, 234, 258, 282, 306]
+  Stage1: Time=0.004853s, Locations=[138, 192, 216, 246, 270, 294]
+  Stage2: Time=0.006029s, Locations=[138, 192, 216]
+  Stage3: Time=0.005732s, Locations=[138, 192, 216]
+
+Dataset: quality_control_1.csv
+  Stage0: Time=0.036757s, Locations=[108]
+  Stage1: Time=0.001211s, Locations=[144]
+  Stage2: Time=0.000664s, Locations=[144]
+  Stage3: Time=0.000799s, Locations=[144]
+
+Dataset: brent_spot.csv
+  Stage0: Time=0.133718s, Locations=[10, 45, 55, 65, 75, 85, 110, 120, 140, 150, 200, 210, 225]
+  Stage1: Time=0.004491s, Locations=[45, 215, 225, 240, 250]
+  Stage2: Time=0.004260s, Locations=[45, 215, 225, 240, 250, 280, 375]
+  Stage3: Time=0.003874s, Locations=[45, 215, 225, 240, 250, 280, 375]
+
+Dataset: us_population.csv
+  Stage0: Time=0.284001s, Locations=[150, 305, 460, 615, 775]
+  Stage1: Time=0.005533s, Locations=[260, 485, 745]
+  Stage2: Time=0.004036s, Locations=[245, 465, 710]
+  Stage3: Time=0.003969s, Locations=[245, 465, 710]
+
+Dataset: iceland_tourism.csv
+  Stage0: Time=0.015593s, Locations=[135, 185]
+  Stage1: Time=0.000605s, Locations=[145, 185]
+  Stage2: Time=0.000365s, Locations=[135, 170]
+  Stage3: Time=0.000325s, Locations=[135, 170]
+
+Dataset: shanghai_license.csv
+  Stage0: Time=0.080273s, Locations=[145]
+  Stage1: Time=0.001842s, Locations=[145]
+  Stage2: Time=0.001408s, Locations=[145]
+  Stage3: Time=0.001207s, Locations=[145]
+
+Dataset: apple.csv
+  Stage0: Time=0.038423s, Locations=[320]
+  Stage1: Time=0.001590s, Locations=[130, 200, 230, 275, 320]
+  Stage2: Time=0.001090s, Locations=[130, 200, 230, 275, 320]
+  Stage3: Time=0.000724s, Locations=[130, 200, 230, 275, 320]
+
+Dataset: gdp_argentina.csv
+  Stage0: Time=0.005809s, Locations=[48]
+  Stage1: Time=0.000226s, Locations=[54]
+  Stage2: Time=0.000162s, Locations=[54]
+  Stage3: Time=0.000258s, Locations=[54]
+
+Dataset: quality_control_5.csv
+  Stage0: Time=0.031268s, Locations=[6]
+  Stage1: Time=0.001160s, Locations=[]
+  Stage2: Time=0.000549s, Locations=[]
+  Stage3: Time=0.000602s, Locations=[]
+
+Dataset: nile.csv
+  Stage0: Time=0.019198s, Locations=[28]
+  Stage1: Time=0.000591s, Locations=[28]
+  Stage2: Time=0.000356s, Locations=[28]
+  Stage3: Time=0.000322s, Locations=[28]
+
+Dataset: unemployment_nl.csv
+  Stage0: Time=0.216350s, Locations=[12, 24, 42, 132, 141, 183]
+  Stage1: Time=0.005102s, Locations=[132, 141]
+  Stage2: Time=0.003368s, Locations=[132, 141, 183]
+  Stage3: Time=0.003112s, Locations=[132, 141, 183]
+
+Dataset: co2_canada.csv
+  Stage0: Time=0.048449s, Locations=[72, 102, 168]
+  Stage1: Time=0.001057s, Locations=[48, 84, 108, 144, 168]
+  Stage2: Time=0.000835s, Locations=[48, 84, 108, 144, 168]
+  Stage3: Time=0.000668s, Locations=[48, 84, 108, 144, 168]
+
+Dataset: ratner_stock.csv
+  Stage0: Time=0.082050s, Locations=[260]
+  Stage1: Time=0.002933s, Locations=[276]
+  Stage2: Time=0.001714s, Locations=[276]
+  Stage3: Time=0.001510s, Locations=[276]
+
+Dataset: well_log.csv
+  Stage0: Time=0.363935s, Locations=[3, 174, 180, 189, 195, 201, 255, 261, 267, 279, 312, 342, 402, 411, 423, 429]
+  Stage1: Time=0.007924s, Locations=[3, 174, 180, 204, 213, 234, 255, 282, 288, 312, 345, 351, 357, 399, 405, 411, 423, 432, 462, 657]
+  Stage2: Time=0.006733s, Locations=[3, 174, 180, 255, 282, 288, 312, 342, 402, 414, 423, 432, 462, 657]
+  Stage3: Time=0.006283s, Locations=[3, 174, 180, 255, 282, 288, 312, 342, 402, 414, 423, 432, 462, 657]
+
+Dataset: scanline_126007.csv
+  Stage0: Time=0.041465s, Locations=[110, 295]
+  Stage1: Time=0.001569s, Locations=[110, 295]
+  Stage2: Time=0.000769s, Locations=[180, 255]
+  Stage3: Time=0.000777s, Locations=[180, 255]
+
+Dataset: quality_control_4.csv
+  Stage0: Time=0.089707s, Locations=[198, 312, 342, 468]
+  Stage1: Time=0.001821s, Locations=[]
+  Stage2: Time=0.000762s, Locations=[]
+  Stage3: Time=0.000904s, Locations=[]
+
+Dataset: quality_control_2.csv
+  Stage0: Time=0.049098s, Locations=[99, 135]
+  Stage1: Time=0.001456s, Locations=[99]
+  Stage2: Time=0.000710s, Locations=[99]
+  Stage3: Time=0.000745s, Locations=[99]
+
+Dataset: gdp_croatia.csv
+  Stage0: Time=0.001581s, Locations=[15]
+  Stage1: Time=0.000109s, Locations=[15]
+  Stage2: Time=0.000052s, Locations=[15]
+  Stage3: Time=0.000042s, Locations=[15]
+
+Dataset: bee_waggle_6.csv
+  Stage0: Time=0.040119s, Locations=[110, 175, 255, 350, 580]
+  Stage1: Time=0.001874s, Locations=[]
+  Stage2: Time=0.000626s, Locations=[]
+  Stage3: Time=0.000763s, Locations=[]
+
+Dataset: seatbelts.csv
+  Stage0: Time=0.085524s, Locations=[75, 135]
+  Stage1: Time=0.001420s, Locations=[57, 171]
+  Stage2: Time=0.001127s, Locations=[60, 171]
+  Stage3: Time=0.000989s, Locations=[60, 171]
+
+Dataset: ozone.csv
+  Stage0: Time=0.005099s, Locations=[28]
+  Stage1: Time=0.000199s, Locations=[28]
+  Stage2: Time=0.000125s, Locations=[28]
+  Stage3: Time=0.000112s, Locations=[28]
